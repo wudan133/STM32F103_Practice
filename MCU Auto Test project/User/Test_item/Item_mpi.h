@@ -2,6 +2,9 @@
 #define __ITEM_MPI_H__
 #include "stm32f10x.h"
 
+extern volatile uint8_t g_u8Rx0Count;
+extern volatile uint8_t g_u8Rx0Buff[256];
+
 extern volatile uint8_t g_u8RxCount;
 extern volatile uint8_t g_u8RxBuff[256];
 

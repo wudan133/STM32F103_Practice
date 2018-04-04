@@ -8,17 +8,17 @@
 #define P0_GROUP            (0x3F)
 #define P0_PeriphClock      (RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC)
 #define P0_0_PORT           GPIOA
-#define P0_0_PIN            GPIO_Pin_0
-#define P0_1_PORT           GPIOC
-#define P0_1_PIN            GPIO_Pin_1
-#define P0_2_PORT           GPIOC
-#define P0_2_PIN            GPIO_Pin_2
-#define P0_3_PORT           GPIOC
-#define P0_3_PIN            GPIO_Pin_3
-#define P0_4_PORT           GPIOA
-#define P0_4_PIN            GPIO_Pin_1
-#define P0_5_PORT           GPIOA
-#define P0_5_PIN            GPIO_Pin_4
+#define P0_0_PIN            GPIO_Pin_4
+#define P0_1_PORT           GPIOA
+#define P0_1_PIN            GPIO_Pin_5
+#define P0_2_PORT           GPIOA
+#define P0_2_PIN            GPIO_Pin_6
+#define P0_3_PORT           GPIOA
+#define P0_3_PIN            GPIO_Pin_7
+#define P0_4_PORT           GPIOC
+#define P0_4_PIN            GPIO_Pin_4
+#define P0_5_PORT           GPIOC
+#define P0_5_PIN            GPIO_Pin_5
 //#define P0_6_PORT           GPIOA
 //#define P0_6_PIN            GPIO_Pin_0
 //#define P0_7_PORT           GPIOA
@@ -27,13 +27,13 @@
 #define P1_GROUP    (0x0F)
 #define P1_PeriphClock      (RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOC)
 #define P1_0_PORT           GPIOA
-#define P1_0_PIN            GPIO_Pin_6
-#define P1_1_PORT           GPIOA
-#define P1_1_PIN            GPIO_Pin_7
-#define P1_2_PORT           GPIOB
-#define P1_2_PIN            GPIO_Pin_0
-#define P1_3_PORT           GPIOC
-#define P1_3_PIN            GPIO_Pin_4
+#define P1_0_PIN            GPIO_Pin_8
+#define P1_1_PORT           GPIOC
+#define P1_1_PIN            GPIO_Pin_6
+#define P1_2_PORT           GPIOC
+#define P1_2_PIN            GPIO_Pin_7
+#define P1_3_PORT           GPIOB
+#define P1_3_PIN            GPIO_Pin_9
 //#define P1_4_PORT           GPIOA
 //#define P1_4_PIN            GPIO_Pin_2
 //#define P1_5_PORT           GPIOA
@@ -43,24 +43,24 @@
 //#define P1_7_PORT           GPIOA
 //#define P1_7_PIN            GPIO_Pin_0
 
-#define P2_GROUP    (0xFF)
-#define P2_PeriphClock      (RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOF | RCC_APB2Periph_GPIOG)
-#define P2_0_PORT           GPIOC
-#define P2_0_PIN            GPIO_Pin_5
-#define P2_1_PORT           GPIOA
-#define P2_1_PIN            GPIO_Pin_5
-#define P2_2_PORT           GPIOF
-#define P2_2_PIN            GPIO_Pin_14
-#define P2_3_PORT           GPIOF
-#define P2_3_PIN            GPIO_Pin_12
-#define P2_4_PORT           GPIOF
-#define P2_4_PIN            GPIO_Pin_13
-#define P2_5_PORT           GPIOB
+#define P2_GROUP    (0x3E)
+#define P2_PeriphClock      (RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC)
+//#define P2_0_PORT           GPIOC
+//#define P2_0_PIN            GPIO_Pin_0
+#define P2_1_PORT           GPIOC
+#define P2_1_PIN            GPIO_Pin_1
+#define P2_2_PORT           GPIOC
+#define P2_2_PIN            GPIO_Pin_2
+#define P2_3_PORT           GPIOC
+#define P2_3_PIN            GPIO_Pin_3
+#define P2_4_PORT           GPIOA
+#define P2_4_PIN            GPIO_Pin_0
+#define P2_5_PORT           GPIOA
 #define P2_5_PIN            GPIO_Pin_1
-#define P2_6_PORT           GPIOF
-#define P2_6_PIN            GPIO_Pin_15
-#define P2_7_PORT           GPIOG
-#define P2_7_PIN            GPIO_Pin_0
+//#define P2_6_PORT           GPIOA
+//#define P2_6_PIN            GPIO_Pin_3
+//#define P2_7_PORT           GPIOA
+//#define P2_7_PIN            GPIO_Pin_2
 
 
 static uint8_t g_u8TestPattern[] = 
@@ -556,8 +556,8 @@ uint8_t _MCU_GetP2(void)
     
     GPIO_InitStructure.GPIO_Mode =  GPIO_Mode_IN_FLOATING;
     
-    GPIO_InitStructure.GPIO_Pin = P2_0_PIN;
-    GPIO_Init (P2_0_PORT, & GPIO_InitStructure );
+//    GPIO_InitStructure.GPIO_Pin = P2_0_PIN;
+//    GPIO_Init (P2_0_PORT, & GPIO_InitStructure );
     
     GPIO_InitStructure.GPIO_Pin = P2_1_PIN;
     GPIO_Init (P2_1_PORT, & GPIO_InitStructure );
@@ -574,21 +574,21 @@ uint8_t _MCU_GetP2(void)
     GPIO_InitStructure.GPIO_Pin = P2_5_PIN;
     GPIO_Init (P2_5_PORT, & GPIO_InitStructure );
     
-    GPIO_InitStructure.GPIO_Pin = P2_6_PIN;
-    GPIO_Init (P2_6_PORT, & GPIO_InitStructure );
-    
-    GPIO_InitStructure.GPIO_Pin = P2_7_PIN;
-    GPIO_Init (P2_7_PORT, & GPIO_InitStructure );
+//    GPIO_InitStructure.GPIO_Pin = P2_6_PIN;
+//    GPIO_Init (P2_6_PORT, & GPIO_InitStructure );
+//    
+//    GPIO_InitStructure.GPIO_Pin = P2_7_PIN;
+//    GPIO_Init (P2_7_PORT, & GPIO_InitStructure );
 
     
-    u8_Data = ( GPIO_ReadInputDataBit(P2_0_PORT, P2_0_PIN) |\
-               (GPIO_ReadInputDataBit(P2_1_PORT, P2_1_PIN) << 1) |\
+    u8_Data = ( /*GPIO_ReadInputDataBit(P2_0_PORT, P2_0_PIN) |\
+               */(GPIO_ReadInputDataBit(P2_1_PORT, P2_1_PIN) << 1) |\
                (GPIO_ReadInputDataBit(P2_2_PORT, P2_2_PIN) << 2) |\
                (GPIO_ReadInputDataBit(P2_3_PORT, P2_3_PIN) << 3) |\
                (GPIO_ReadInputDataBit(P2_4_PORT, P2_4_PIN) << 4) |\
-               (GPIO_ReadInputDataBit(P2_5_PORT, P2_5_PIN) << 5) |\
+               (GPIO_ReadInputDataBit(P2_5_PORT, P2_5_PIN) << 5)/* |\
                (GPIO_ReadInputDataBit(P2_6_PORT, P2_6_PIN) << 6) |\
-               (GPIO_ReadInputDataBit(P2_7_PORT, P2_7_PIN) << 7) );
+               (GPIO_ReadInputDataBit(P2_7_PORT, P2_7_PIN) << 7)*/ );
     
     return u8_Data;
 }
@@ -602,8 +602,8 @@ void _MCU_SetP2(uint8_t u8_Data)
     GPIO_InitStructure.GPIO_Mode =  GPIO_Mode_Out_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     
-    GPIO_InitStructure.GPIO_Pin = P2_0_PIN;
-    GPIO_Init (P2_0_PORT, & GPIO_InitStructure );
+//    GPIO_InitStructure.GPIO_Pin = P2_0_PIN;
+//    GPIO_Init (P2_0_PORT, & GPIO_InitStructure );
     
     GPIO_InitStructure.GPIO_Pin = P2_1_PIN;
     GPIO_Init (P2_1_PORT, & GPIO_InitStructure );
@@ -620,18 +620,18 @@ void _MCU_SetP2(uint8_t u8_Data)
     GPIO_InitStructure.GPIO_Pin = P2_5_PIN;
     GPIO_Init (P2_5_PORT, & GPIO_InitStructure );
     
-    GPIO_InitStructure.GPIO_Pin = P2_6_PIN;
-    GPIO_Init (P2_6_PORT, & GPIO_InitStructure );
-    
-    GPIO_InitStructure.GPIO_Pin = P2_7_PIN;
-    GPIO_Init (P2_7_PORT, & GPIO_InitStructure );
-    
-    GPIO_WriteBit(P2_0_PORT, P2_0_PIN, (BitAction)(u8_Data & 0x01));
+//    GPIO_InitStructure.GPIO_Pin = P2_6_PIN;
+//    GPIO_Init (P2_6_PORT, & GPIO_InitStructure );
+//    
+//    GPIO_InitStructure.GPIO_Pin = P2_7_PIN;
+//    GPIO_Init (P2_7_PORT, & GPIO_InitStructure );
+
+//    GPIO_WriteBit(P2_0_PORT, P2_0_PIN, (BitAction)(u8_Data & 0x01));
     GPIO_WriteBit(P2_1_PORT, P2_1_PIN, (BitAction)((u8_Data>>1) & 0x01));
     GPIO_WriteBit(P2_2_PORT, P2_2_PIN, (BitAction)((u8_Data>>2) & 0x01));
     GPIO_WriteBit(P2_3_PORT, P2_3_PIN, (BitAction)((u8_Data>>3) & 0x01));
     GPIO_WriteBit(P2_4_PORT, P2_4_PIN, (BitAction)((u8_Data>>4) & 0x01));
     GPIO_WriteBit(P2_5_PORT, P2_5_PIN, (BitAction)((u8_Data>>5) & 0x01));
-    GPIO_WriteBit(P2_6_PORT, P2_6_PIN, (BitAction)((u8_Data>>6) & 0x01));
-    GPIO_WriteBit(P2_7_PORT, P2_7_PIN, (BitAction)((u8_Data>>7) & 0x01));
+//    GPIO_WriteBit(P2_6_PORT, P2_6_PIN, (BitAction)((u8_Data>>6) & 0x01));
+//    GPIO_WriteBit(P2_7_PORT, P2_7_PIN, (BitAction)((u8_Data>>7) & 0x01));
 }

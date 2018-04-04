@@ -73,55 +73,7 @@ static void ADVANCE_TIM_Mode_Config(void)
     // 开启定时器时钟,即内部时钟CK_INT=72M
     TIM_TimeBaseInitTypeDef     TIM_TimeBaseStructure;
     TIM_ICInitTypeDef           TIM_ICInitStructure;
-//    DMA_InitTypeDef             DMA_InitStructure;
-    
-	ADVANCE_TIM_APBxClock_FUN(ADVANCE_TIM_CLK,ENABLE);
-//    // 打开DMA时钟
-//	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA2, ENABLE);
 
-//    // 复位DMA控制器
-//	DMA_DeInit(DMA2_Channel5);
-//    
-//    // 配置 DMA 初始化结构体
-//	// 外设基址为：TIM8 CCR1 数据寄存器地址
-//	DMA_InitStructure.DMA_PeripheralBaseAddr = ( u32 ) ( & ( TIM8->CCR1 ) );
-//	
-//	// 存储器地址
-//	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)(IC1Value);
-//	
-//	// 数据源来自外设
-//	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
-//	
-//	// 缓冲区大小，应该等于数据目的地的大小
-//	DMA_InitStructure.DMA_BufferSize = 1;
-//	
-//	// 外设寄存器只有一个，地址不用递增
-//	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
-
-//	// 存储器地址递增
-//	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable; 
-//	
-//	// 外设数据大小为半字，即两个字节
-//	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
-//	
-//	// 内存数据大小也为半字，跟外设数据大小相同
-//	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;
-//	
-//	// 循环传输模式
-//	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;	
-
-//	// DMA 传输通道优先级为高，当使用一个DMA通道时，优先级设置不影响
-//	DMA_InitStructure.DMA_Priority = DMA_Priority_High;
-//	
-//	// 禁止存储器到存储器模式，因为是从外设到存储器
-//	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
-//	
-//	// 初始化DMA
-//	DMA_Init(DMA2_Channel5, &DMA_InitStructure);
-//	
-//	// 使能 DMA 通道
-//	DMA_Cmd(DMA2_Channel5 , ENABLE);
-    
 /*--------------------时基结构体初始化-------------------------*/
 	
 	// 自动重装载寄存器的值，累计TIM_Period+1个频率后产生一个更新或者中断

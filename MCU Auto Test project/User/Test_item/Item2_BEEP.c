@@ -6,8 +6,8 @@
 #include "Item_mpi.h"
 #include "Input_capture.h" 
 
-__IO uint32_t g_u32BeepCount;
-__IO uint32_t g_u32BeepFrequency;
+extern __IO uint32_t g_u32Count;
+extern __IO uint32_t g_u32Frequency;
 
 void _MCU_BEEPCheck_DeInit(void);
 void _BEEPCheck_Init(void);
@@ -35,18 +35,18 @@ CHECKRESULT_E Item2_BEEP_test(void)
     i=0;
     while(i<10)
     {
-        if(g_u32BeepFrequency != 0)
+        if(g_u32Frequency != 0)
         {
             i++;
-            if( (g_u32BeepFrequency < (200*(1-0.1))) || \
-                (g_u32BeepFrequency > (200*(1+0.1))) )
+            if( (g_u32Frequency < (200*(1-0.1))) || \
+                (g_u32Frequency > (200*(1+0.1))) )
             {
                 e_result = FAIL;
-                printf("[ERROR]g_u32BeepFrequency = %d\r\n", g_u32BeepFrequency);
+                printf("[ERROR]Frequency = %d\r\n", g_u32Frequency );
                 break;
             }
-            printf("[LOG]g_u32BeepFrequency = %d\r\n", g_u32BeepFrequency);
-            g_u32BeepFrequency = 0;
+            printf("[LOG]Frequency = %d\r\n", g_u32Frequency );
+            g_u32Frequency = 0;
         }
     }
     
@@ -62,9 +62,6 @@ void _MCU_BEEPCheck_DeInit(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure; 
     
-    //[mcu]Disable Beep.
-    WriteSFR(0x86, 0x00);
-    
     //[STM32]
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);             // 设置中断组为0	
     NVIC_InitStructure.NVIC_IRQChannel = TIM6_IRQn;             // 设置中断来源	
@@ -76,6 +73,9 @@ void _MCU_BEEPCheck_DeInit(void)
     TIM_Cmd(TIM6, DISABLE);	                                    // 使能计数器																	
     RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM6, DISABLE);
     
+    //[mcu]Disable Beep.
+    WriteSFR(0x86, 0x00);
+    g_u32Frequency = 0;
 }
 
 void _BEEPCheck_Init(void)

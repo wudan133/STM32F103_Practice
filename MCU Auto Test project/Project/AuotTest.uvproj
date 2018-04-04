@@ -480,11 +480,6 @@
               <FileType>1</FileType>
               <FilePath>..\User\SysTick\SysTick.c</FilePath>
             </File>
-            <File>
-              <FileName>Input_capture.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\InputCapture\Input_capture.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

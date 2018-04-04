@@ -27,7 +27,6 @@
 #include "stm32f10x_it.h"
 #include "SysTick.h"
 #include "Item_mpi.h"
-#include "Input_capture.h" 
 #include "stdio.h"
 
 
@@ -156,7 +155,10 @@ void USART1_IRQHandler(void)
 
 void USART2_IRQHandler(void)
 {
- 
+    if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)
+	{
+        g_u8Rx0Buff[g_u8Rx0Count++] = USART_ReceiveData(USART2);
+	} 
 }
 
 void USART3_IRQHandler(void)
@@ -181,29 +183,31 @@ void USART3_IRQHandler(void)
   */ 
 
 
+extern __IO uint16_t IC1Value;
+extern __IO uint16_t IC2Value;
 /*
  * 如果是第一个上升沿中断，计数器会被复位，锁存到CCR1寄存器的值是0，CCR2寄存器的值也是0，
  * 无法计算频率和占空比。当第二次上升沿到来的时候，CCR1和CCR2捕获到的才是有效的值。其中
  * CCR1对应的是周期，CCR2对应的是占空比。
  */
-void ADVANCE_TIM_IRQHandler(void)
+void TIM1_CC_IRQHandler(void)
 {
     /* 清除中断标志位 */
-    TIM_ClearITPendingBit(ADVANCE_TIM, TIM_IT_CC1);
+    TIM_ClearITPendingBit(TIM1, TIM_IT_CC1);
 
     /* 获取输入捕获值 */
-    IC1Value = TIM_GetCapture1(ADVANCE_TIM);
-    IC2Value = TIM_GetCapture2(ADVANCE_TIM);
+    IC1Value = TIM_GetCapture1(TIM1);
+    IC2Value = TIM_GetCapture2(TIM1);
 }
 
-extern __IO uint32_t g_u32BeepCount;
-extern __IO uint32_t g_u32BeepFrequency;
+__IO uint32_t g_u32Count;
+__IO uint32_t g_u32Frequency;
 
 void EXTI1_IRQHandler (void)
 {
     if(EXTI_GetITStatus(EXTI_Line1) != RESET)
     {
-        g_u32BeepCount++;
+        g_u32Count++;
         EXTI_ClearITPendingBit(EXTI_Line1);
     }
 }
@@ -212,8 +216,8 @@ void  TIM6_IRQHandler (void)
 {
     if ( TIM_GetITStatus( TIM6, TIM_IT_Update) != RESET ) 
 	{
-        g_u32BeepFrequency = g_u32BeepCount;
-        g_u32BeepCount = 0;
+        g_u32Frequency = g_u32Count;
+        g_u32Count = 0;
         TIM_ClearITPendingBit(TIM6 , TIM_FLAG_Update);
     }
 }

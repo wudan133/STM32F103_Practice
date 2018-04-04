@@ -49,7 +49,7 @@ int main ( void )
     SysTick_Init();
     
     USART1_Config();
-    //USART2_Config();
+    USART2_Config();
     USART3_Config();
     
     ILI9341_Init ();
@@ -64,16 +64,16 @@ int main ( void )
     ILI9341_DispString_EN ( 0, 16*18, " Hefei MacroSilicon Technology Co., Ltd. ", macBACKGROUND, macGREEN );
     printf("* Init Done *\r\n");
     
-//    //Item 1
-//    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+0), strCheckList[0], macBACKGROUND, macGREEN );
-//    if(Item1_GPIO_test() == PASS)
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+0), "[PASS]", macBACKGROUND, macGREEN );
-//    }
-//    else
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+0), "[FAIL]", macBACKGROUND, macRED );
-//    }
+    //Item 1
+    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+0), strCheckList[0], macBACKGROUND, macGREEN );
+    if(Item1_GPIO_test() == PASS)
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+0), "[PASS]", macBACKGROUND, macGREEN );
+    }
+    else
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+0), "[FAIL]", macBACKGROUND, macRED );
+    }
     
     //Item 2
     ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+1), strCheckList[1], macBACKGROUND, macGREEN );
@@ -108,70 +108,68 @@ int main ( void )
         ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+3), "[FAIL]", macBACKGROUND, macRED );
     }
     
-//    //Item 5
-//    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+4), strCheckList[4], macBACKGROUND, macGREEN );
-//    if(Item5_UART_test() == PASS)
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+4), "[PASS]", macBACKGROUND, macGREEN );
-//    }
-//    else
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+4), "[FAIL]", macBACKGROUND, macRED );
-//    }
-//    //Item 6
-//    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+5), strCheckList[5], macBACKGROUND, macGREEN );
-//    if(Item6_WDT_test() == PASS)
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+5), "[PASS]", macBACKGROUND, macGREEN );
-//    }
-//    else
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+5), "[FAIL]", macBACKGROUND, macRED );
-//    }
-//    
-//    //Item 7
-//    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+6), strCheckList[6], macBACKGROUND, macGREEN );
-//    if(Item7_PD_Mode_test() == PASS)
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+6), "[PASS]", macBACKGROUND, macGREEN );
-//    }
-//    else
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+6), "[FAIL]", macBACKGROUND, macRED );
-//    }
-//    
-//    //Item 8
-//    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+7), strCheckList[7], macBACKGROUND, macGREEN );
-//    if(Item8_InformationBlock_test() == PASS)
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+7), "[PASS]", macBACKGROUND, macGREEN );
-//    }
-//    else
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+7), "[FAIL]", macBACKGROUND, macRED );
-//    }
-//    
-//    //Item 9
-//    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+8), strCheckList[8], macBACKGROUND, macGREEN );
-//    if(Item9_Reset_test() == PASS)
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+8), "[PASS]", macBACKGROUND, macGREEN );
-//    }
-//    else
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+8), "[FAIL]", macBACKGROUND, macRED );
-//    }
-//    
-//    //Item 10
-//    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+9), strCheckList[9], macBACKGROUND, macGREEN );
-//    if(Item10_ReadProtection_test() == PASS)
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+9), "[PASS]", macBACKGROUND, macGREEN );
-//    }
-//    else
-//    {
-//        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+9), "[FAIL]", macBACKGROUND, macRED );
-//    }
+    //Item 5
+    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+4), strCheckList[4], macBACKGROUND, macGREEN );
+    if(Item5_UART_test() == PASS)
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+4), "[PASS]", macBACKGROUND, macGREEN );
+    }
+    else
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+4), "[FAIL]", macBACKGROUND, macRED );
+    }
+    //Item 6
+    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+5), strCheckList[5], macBACKGROUND, macGREEN );
+    if(Item6_WDT_test() == PASS)
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+5), "[PASS]", macBACKGROUND, macGREEN );
+    }
+    else
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+5), "[FAIL]", macBACKGROUND, macRED );
+    }
+    //Item 7
+    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+6), strCheckList[6], macBACKGROUND, macGREEN );
+    if(Item7_PD_Mode_test() == PASS)
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+6), "[PASS]", macBACKGROUND, macGREEN );
+    }
+    else
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+6), "[FAIL]", macBACKGROUND, macRED );
+    }
+    //Item 8
+    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+7), strCheckList[7], macBACKGROUND, macGREEN );
+    if(Item8_InformationBlock_test() == PASS)
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+7), "[PASS]", macBACKGROUND, macGREEN );
+    }
+    else
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+7), "[FAIL]", macBACKGROUND, macRED );
+    }
+    
+    //Item 9
+    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+8), strCheckList[8], macBACKGROUND, macGREEN );
+    if(Item9_Reset_test() == PASS)
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+8), "[PASS]", macBACKGROUND, macGREEN );
+    }
+    else
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+8), "[FAIL]", macBACKGROUND, macRED );
+    }
+    
+    //Item 10
+    ILI9341_DispString_EN ( 0, 16*(ITEM1_LINE+9), strCheckList[9], macBACKGROUND, macGREEN );
+    if(Item10_ReadProtection_test() == PASS)
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+9), "[PASS]", macBACKGROUND, macGREEN );
+    }
+    else
+    {
+        ILI9341_DispString_EN ( 24*8, 16*(ITEM1_LINE+9), "[FAIL]", macBACKGROUND, macRED );
+    }
     
     while (1)
     {
