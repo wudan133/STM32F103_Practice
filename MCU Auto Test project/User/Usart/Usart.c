@@ -76,9 +76,9 @@ static void NVIC_Configuration(void)
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 
     /* Enable the USARTy Interrupt */
-    NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority =1;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority =3;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 }
@@ -121,13 +121,59 @@ void USART2_Config(void)
 
     USART_Init(USART2, &USART_InitStructure); 
 
-    /*	配置中断优先级 */
-    NVIC_Configuration();
     /* 使能串口2接收中断 */
     USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
 
     USART_Cmd(USART2, ENABLE);
     USART_ClearFlag(USART2, USART_FLAG_TC);
+}
+
+
+/*
+ * 函数名：USARTx_Config
+ * 描述  ：USART3 GPIO 配置,工作模式配置
+ * 输入  ：无
+ * 输出  : 无
+ * 调用  ：外部调用
+ */
+void USART3_Config(void)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    USART_InitTypeDef USART_InitStructure;
+
+    /* config USART2 clock */
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
+    RCC_APB2PeriphClockCmd((RCC_APB2Periph_GPIOB | RCC_APB2Periph_AFIO), ENABLE);
+
+    /* USART3 GPIO config */
+    /* Configure USART3 Tx (PB.10) as alternate function push-pull */
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+    /* Configure USART3 Rx (PB.11) as input floating */
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+    /* USART2 mode config */
+    USART_InitStructure.USART_BaudRate = 38400;
+    USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+    USART_InitStructure.USART_StopBits = USART_StopBits_1;
+    USART_InitStructure.USART_Parity = USART_Parity_No ;
+    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+
+    USART_Init(USART3, &USART_InitStructure); 
+
+    /*	配置中断优先级 */
+    NVIC_Configuration();
+    /* 使能串口2接收中断 */
+    USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);
+
+    USART_Cmd(USART3, ENABLE);
+    USART_ClearFlag(USART3, USART_FLAG_TC);
 }
 
 /***************** 发送一个字符  **********************/
@@ -139,5 +185,6 @@ void Usart_SendByte( USART_TypeDef * pUSARTx, uint8_t ch )
     /* 等待发送完毕 */
     while (USART_GetFlagStatus(pUSARTx, USART_FLAG_TXE) == RESET);	
 }
+
 
 /******************* (C) COPYRIGHT 2012 WildFire Team *****END OF FILE************/

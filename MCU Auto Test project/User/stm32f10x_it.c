@@ -156,9 +156,14 @@ void USART1_IRQHandler(void)
 
 void USART2_IRQHandler(void)
 {
-	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)
+ 
+}
+
+void USART3_IRQHandler(void)
+{
+	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
 	{
-        g_u8RxBuff[g_u8RxCount++] = USART_ReceiveData(USART2);
+        g_u8RxBuff[g_u8RxCount++] = USART_ReceiveData(USART3);
 	} 
 	 
 }
@@ -175,10 +180,7 @@ void USART2_IRQHandler(void)
   * @}
   */ 
 
-__IO uint16_t IC2Value = 0;
-__IO uint16_t IC1Value = 0;
-__IO float DutyCycle = 0;
-__IO float Frequency = 0;
+
 /*
  * 如果是第一个上升沿中断，计数器会被复位，锁存到CCR1寄存器的值是0，CCR2寄存器的值也是0，
  * 无法计算频率和占空比。当第二次上升沿到来的时候，CCR1和CCR2捕获到的才是有效的值。其中
@@ -192,20 +194,27 @@ void ADVANCE_TIM_IRQHandler(void)
     /* 获取输入捕获值 */
     IC1Value = TIM_GetCapture1(ADVANCE_TIM);
     IC2Value = TIM_GetCapture2(ADVANCE_TIM);
+}
 
-    // 注意：捕获寄存器CCR1和CCR2的值在计算占空比和频率的时候必须加1
-    if (IC1Value != 0)
+extern __IO uint32_t g_u32BeepCount;
+extern __IO uint32_t g_u32BeepFrequency;
+
+void EXTI1_IRQHandler (void)
+{
+    if(EXTI_GetITStatus(EXTI_Line1) != RESET)
     {
-        /* 占空比计算 */
-        DutyCycle = (float)((IC2Value+1) * 100) / (IC1Value+1);
-
-        /* 频率计算 */
-        Frequency = 1000000/(float)(IC1Value+1);
+        g_u32BeepCount++;
+        EXTI_ClearITPendingBit(EXTI_Line1);
     }
-    else
-    {
-        DutyCycle = 0;
-        Frequency = 0;
+}
+
+void  TIM6_IRQHandler (void)
+{
+    if ( TIM_GetITStatus( TIM6, TIM_IT_Update) != RESET ) 
+	{
+        g_u32BeepFrequency = g_u32BeepCount;
+        g_u32BeepCount = 0;
+        TIM_ClearITPendingBit(TIM6 , TIM_FLAG_Update);
     }
 }
 

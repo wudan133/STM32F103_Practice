@@ -7,6 +7,7 @@
 
 void USART1_Config(void);
 void USART2_Config(void);
+void USART3_Config(void);
 void Usart_SendByte( USART_TypeDef * pUSARTx, uint8_t ch );
 
 

@@ -49,7 +49,8 @@ int main ( void )
     SysTick_Init();
     
     USART1_Config();
-    USART2_Config();
+    //USART2_Config();
+    USART3_Config();
     
     ILI9341_Init ();
 
