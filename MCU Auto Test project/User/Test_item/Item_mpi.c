@@ -2,6 +2,10 @@
 #include "Usart.h"
 #include "SysTick.h"
 
+#define RESET_PeriphClock    (RCC_APB2Periph_GPIOC)
+#define RESET_PORT           GPIOC
+#define RESET_PIN            GPIO_Pin_5
+
 volatile uint8_t g_u8Rx0Count = 0;
 volatile uint8_t g_u8Rx0Buff[256] = {0};
 
@@ -72,3 +76,24 @@ uint8_t WriteIdata(uint8_t u8_addr, uint8_t u8_data)
     return g_u8RxBuff[0];
 }
 
+
+void ChipReset(void)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    
+    RCC_APB2PeriphClockCmd (RESET_PeriphClock, ENABLE );
+    
+    GPIO_InitStructure.GPIO_Mode =  GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    
+    GPIO_InitStructure.GPIO_Pin = RESET_PIN;
+    GPIO_Init (RESET_PORT, & GPIO_InitStructure );
+    
+    GPIO_WriteBit(RESET_PORT, RESET_PIN, 0x00);
+    Delay_ms(10);
+    GPIO_WriteBit(RESET_PORT, RESET_PIN, 0x01);
+//    GPIO_InitStructure.GPIO_Mode =  GPIO_Mode_IN_FLOATING;
+//    
+//    GPIO_InitStructure.GPIO_Pin = RESET_PIN;
+//    GPIO_Init (RESET_PORT, & GPIO_InitStructure );
+}

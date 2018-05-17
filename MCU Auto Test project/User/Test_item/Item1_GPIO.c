@@ -5,7 +5,7 @@
 #include "SysTick.h"
 #include "Usart.h"
 
-#define P0_GROUP            (0x3F)
+#define P0_GROUP            (0x1F)
 #define P0_PeriphClock      (RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC)
 #define P0_0_PORT           GPIOA
 #define P0_0_PIN            GPIO_Pin_4
@@ -17,8 +17,8 @@
 #define P0_3_PIN            GPIO_Pin_7
 #define P0_4_PORT           GPIOC
 #define P0_4_PIN            GPIO_Pin_4
-#define P0_5_PORT           GPIOC
-#define P0_5_PIN            GPIO_Pin_5
+//#define P0_5_PORT           GPIOC
+//#define P0_5_PIN            GPIO_Pin_5
 //#define P0_6_PORT           GPIOA
 //#define P0_6_PIN            GPIO_Pin_0
 //#define P0_7_PORT           GPIOA
@@ -43,18 +43,18 @@
 //#define P1_7_PORT           GPIOA
 //#define P1_7_PIN            GPIO_Pin_0
 
-#define P2_GROUP    (0x3E)
+#define P2_GROUP    (0x2D)
 #define P2_PeriphClock      (RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC)
-//#define P2_0_PORT           GPIOC
-//#define P2_0_PIN            GPIO_Pin_0
-#define P2_1_PORT           GPIOC
-#define P2_1_PIN            GPIO_Pin_1
+#define P2_0_PORT           GPIOC
+#define P2_0_PIN            GPIO_Pin_3
+//#define P2_1_PORT           GPIOC
+//#define P2_1_PIN            GPIO_Pin_1
 #define P2_2_PORT           GPIOC
-#define P2_2_PIN            GPIO_Pin_2
+#define P2_2_PIN            GPIO_Pin_1
 #define P2_3_PORT           GPIOC
-#define P2_3_PIN            GPIO_Pin_3
-#define P2_4_PORT           GPIOA
-#define P2_4_PIN            GPIO_Pin_0
+#define P2_3_PIN            GPIO_Pin_2
+//#define P2_4_PORT           GPIOA
+//#define P2_4_PIN            GPIO_Pin_0
 #define P2_5_PORT           GPIOA
 #define P2_5_PIN            GPIO_Pin_1
 //#define P2_6_PORT           GPIOA
@@ -115,17 +115,45 @@ CHECKRESULT_E _CheckExt(void);
 //Usart_SendStr_length();
 CHECKRESULT_E Item1_GPIO_test(void)
 {
+    CHECKRESULT_E e_result = PASS;
+    ChipReset();
+    Delay_ms(1000);
     printf("\r\n******** GPIO ********\r\n");
-    if( (_CheckInput() != PASS) || \
-        (_CheckOutput() != PASS) || \
-        (_CheckExt() != PASS) )
+    if(_CheckInput() != PASS)
     {
         _MCU_GPIOCheck_Deint();
-        return FAIL;
+        printf("[ERROR]Input Fial!!!\r\n");
+        e_result = FAIL;
+    }
+    else
+    {
+        printf("[LOG]Input Pass!!!\r\n");
+    }
+    
+    if(_CheckOutput() != PASS)
+    {
+        _MCU_GPIOCheck_Deint();
+        printf("[ERROR]Output Fial!!!\r\n");
+        e_result = FAIL;
+    }
+    else
+    {
+        printf("[LOG]Output Pass!!!\r\n");
+    }
+    
+    if(_CheckExt() != PASS)
+    {
+        _MCU_GPIOCheck_Deint();
+        printf("[ERROR]Ext Fial!!!\r\n");
+        e_result = FAIL;
+    }
+    else
+    {
+        printf("[LOG]Ext Pass!!!\r\n");
     }
     
     _MCU_GPIOCheck_Deint();
-    return PASS;
+    return e_result;
 }
 
 /*****************************************************************************/
@@ -409,8 +437,8 @@ uint8_t _MCU_GetP0(void)
     GPIO_InitStructure.GPIO_Pin = P0_4_PIN;
     GPIO_Init (P0_4_PORT, & GPIO_InitStructure );
     
-    GPIO_InitStructure.GPIO_Pin = P0_5_PIN;
-    GPIO_Init (P0_5_PORT, & GPIO_InitStructure );
+//    GPIO_InitStructure.GPIO_Pin = P0_5_PIN;
+//    GPIO_Init (P0_5_PORT, & GPIO_InitStructure );
 //    GPIO_InitStructure.GPIO_Pin = P0_6_PIN;
 //    GPIO_Init (P0_6_PORT, & GPIO_InitStructure );
 //    GPIO_InitStructure.GPIO_Pin = P0_7_PIN;
@@ -420,8 +448,8 @@ uint8_t _MCU_GetP0(void)
                (GPIO_ReadInputDataBit(P0_1_PORT, P0_1_PIN) << 1) |\
                (GPIO_ReadInputDataBit(P0_2_PORT, P0_2_PIN) << 2) |\
                (GPIO_ReadInputDataBit(P0_3_PORT, P0_3_PIN) << 3) |\
-               (GPIO_ReadInputDataBit(P0_4_PORT, P0_4_PIN) << 4) |\
-               (GPIO_ReadInputDataBit(P0_5_PORT, P0_5_PIN) << 5) );
+               (GPIO_ReadInputDataBit(P0_4_PORT, P0_4_PIN) << 4)/* |\
+               (GPIO_ReadInputDataBit(P0_5_PORT, P0_5_PIN) << 5)*/ );
     
     return u8_Data;
 }
@@ -450,8 +478,8 @@ void _MCU_SetP0(uint8_t u8_Data)
     GPIO_InitStructure.GPIO_Pin = P0_4_PIN;
     GPIO_Init (P0_4_PORT, & GPIO_InitStructure );
     
-    GPIO_InitStructure.GPIO_Pin = P0_5_PIN;
-    GPIO_Init (P0_5_PORT, & GPIO_InitStructure );
+//    GPIO_InitStructure.GPIO_Pin = P0_5_PIN;
+//    GPIO_Init (P0_5_PORT, & GPIO_InitStructure );
 //    GPIO_InitStructure.GPIO_Pin = P0_6_PIN;
 //    GPIO_Init (P0_6_PORT, & GPIO_InitStructure );
 //    GPIO_InitStructure.GPIO_Pin = P0_7_PIN;
@@ -462,7 +490,7 @@ void _MCU_SetP0(uint8_t u8_Data)
     GPIO_WriteBit(P0_2_PORT, P0_2_PIN, (BitAction)((u8_Data>>2) & 0x01));
     GPIO_WriteBit(P0_3_PORT, P0_3_PIN, (BitAction)((u8_Data>>3) & 0x01));
     GPIO_WriteBit(P0_4_PORT, P0_4_PIN, (BitAction)((u8_Data>>4) & 0x01));
-    GPIO_WriteBit(P0_5_PORT, P0_5_PIN, (BitAction)((u8_Data>>5) & 0x01));
+//    GPIO_WriteBit(P0_5_PORT, P0_5_PIN, (BitAction)((u8_Data>>5) & 0x01));
 }
 
 uint8_t _MCU_GetP1(void)
@@ -556,11 +584,11 @@ uint8_t _MCU_GetP2(void)
     
     GPIO_InitStructure.GPIO_Mode =  GPIO_Mode_IN_FLOATING;
     
-//    GPIO_InitStructure.GPIO_Pin = P2_0_PIN;
-//    GPIO_Init (P2_0_PORT, & GPIO_InitStructure );
+    GPIO_InitStructure.GPIO_Pin = P2_0_PIN;
+    GPIO_Init (P2_0_PORT, & GPIO_InitStructure );
     
-    GPIO_InitStructure.GPIO_Pin = P2_1_PIN;
-    GPIO_Init (P2_1_PORT, & GPIO_InitStructure );
+//    GPIO_InitStructure.GPIO_Pin = P2_1_PIN;
+//    GPIO_Init (P2_1_PORT, & GPIO_InitStructure );
     
     GPIO_InitStructure.GPIO_Pin = P2_2_PIN;
     GPIO_Init (P2_2_PORT, & GPIO_InitStructure );
@@ -568,8 +596,8 @@ uint8_t _MCU_GetP2(void)
     GPIO_InitStructure.GPIO_Pin = P2_3_PIN;
     GPIO_Init (P2_3_PORT, & GPIO_InitStructure );
     
-    GPIO_InitStructure.GPIO_Pin = P2_4_PIN;
-    GPIO_Init (P2_4_PORT, & GPIO_InitStructure );
+//    GPIO_InitStructure.GPIO_Pin = P2_4_PIN;
+//    GPIO_Init (P2_4_PORT, & GPIO_InitStructure );
     
     GPIO_InitStructure.GPIO_Pin = P2_5_PIN;
     GPIO_Init (P2_5_PORT, & GPIO_InitStructure );
@@ -581,12 +609,12 @@ uint8_t _MCU_GetP2(void)
 //    GPIO_Init (P2_7_PORT, & GPIO_InitStructure );
 
     
-    u8_Data = ( /*GPIO_ReadInputDataBit(P2_0_PORT, P2_0_PIN) |\
-               */(GPIO_ReadInputDataBit(P2_1_PORT, P2_1_PIN) << 1) |\
-               (GPIO_ReadInputDataBit(P2_2_PORT, P2_2_PIN) << 2) |\
+    u8_Data = ( GPIO_ReadInputDataBit(P2_0_PORT, P2_0_PIN) |\
+               /*(GPIO_ReadInputDataBit(P2_1_PORT, P2_1_PIN) << 1) |\
+               */(GPIO_ReadInputDataBit(P2_2_PORT, P2_2_PIN) << 2) |\
                (GPIO_ReadInputDataBit(P2_3_PORT, P2_3_PIN) << 3) |\
-               (GPIO_ReadInputDataBit(P2_4_PORT, P2_4_PIN) << 4) |\
-               (GPIO_ReadInputDataBit(P2_5_PORT, P2_5_PIN) << 5)/* |\
+               /*(GPIO_ReadInputDataBit(P2_4_PORT, P2_4_PIN) << 4) |\
+               */(GPIO_ReadInputDataBit(P2_5_PORT, P2_5_PIN) << 5)/* |\
                (GPIO_ReadInputDataBit(P2_6_PORT, P2_6_PIN) << 6) |\
                (GPIO_ReadInputDataBit(P2_7_PORT, P2_7_PIN) << 7)*/ );
     
@@ -602,11 +630,11 @@ void _MCU_SetP2(uint8_t u8_Data)
     GPIO_InitStructure.GPIO_Mode =  GPIO_Mode_Out_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     
-//    GPIO_InitStructure.GPIO_Pin = P2_0_PIN;
-//    GPIO_Init (P2_0_PORT, & GPIO_InitStructure );
+    GPIO_InitStructure.GPIO_Pin = P2_0_PIN;
+    GPIO_Init (P2_0_PORT, & GPIO_InitStructure );
     
-    GPIO_InitStructure.GPIO_Pin = P2_1_PIN;
-    GPIO_Init (P2_1_PORT, & GPIO_InitStructure );
+//    GPIO_InitStructure.GPIO_Pin = P2_1_PIN;
+//    GPIO_Init (P2_1_PORT, & GPIO_InitStructure );
     
     GPIO_InitStructure.GPIO_Pin = P2_2_PIN;
     GPIO_Init (P2_2_PORT, & GPIO_InitStructure );
@@ -614,8 +642,8 @@ void _MCU_SetP2(uint8_t u8_Data)
     GPIO_InitStructure.GPIO_Pin = P2_3_PIN;
     GPIO_Init (P2_3_PORT, & GPIO_InitStructure );
     
-    GPIO_InitStructure.GPIO_Pin = P2_4_PIN;
-    GPIO_Init (P2_4_PORT, & GPIO_InitStructure );
+//    GPIO_InitStructure.GPIO_Pin = P2_4_PIN;
+//    GPIO_Init (P2_4_PORT, & GPIO_InitStructure );
     
     GPIO_InitStructure.GPIO_Pin = P2_5_PIN;
     GPIO_Init (P2_5_PORT, & GPIO_InitStructure );
@@ -626,11 +654,11 @@ void _MCU_SetP2(uint8_t u8_Data)
 //    GPIO_InitStructure.GPIO_Pin = P2_7_PIN;
 //    GPIO_Init (P2_7_PORT, & GPIO_InitStructure );
 
-//    GPIO_WriteBit(P2_0_PORT, P2_0_PIN, (BitAction)(u8_Data & 0x01));
-    GPIO_WriteBit(P2_1_PORT, P2_1_PIN, (BitAction)((u8_Data>>1) & 0x01));
+    GPIO_WriteBit(P2_0_PORT, P2_0_PIN, (BitAction)(u8_Data & 0x01));
+//    GPIO_WriteBit(P2_1_PORT, P2_1_PIN, (BitAction)((u8_Data>>1) & 0x01));
     GPIO_WriteBit(P2_2_PORT, P2_2_PIN, (BitAction)((u8_Data>>2) & 0x01));
     GPIO_WriteBit(P2_3_PORT, P2_3_PIN, (BitAction)((u8_Data>>3) & 0x01));
-    GPIO_WriteBit(P2_4_PORT, P2_4_PIN, (BitAction)((u8_Data>>4) & 0x01));
+//    GPIO_WriteBit(P2_4_PORT, P2_4_PIN, (BitAction)((u8_Data>>4) & 0x01));
     GPIO_WriteBit(P2_5_PORT, P2_5_PIN, (BitAction)((u8_Data>>5) & 0x01));
 //    GPIO_WriteBit(P2_6_PORT, P2_6_PIN, (BitAction)((u8_Data>>6) & 0x01));
 //    GPIO_WriteBit(P2_7_PORT, P2_7_PIN, (BitAction)((u8_Data>>7) & 0x01));

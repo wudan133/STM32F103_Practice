@@ -41,6 +41,7 @@ CHECKRESULT_E Item6_WDT_test(void)
          u8_timerOut++;
          Delay_ms(10);
     }
+    
     //mcu Enable WDT. 
     if(WriteSFR(0xD8, 0x44) != 0xA3)
     {
@@ -52,7 +53,7 @@ CHECKRESULT_E Item6_WDT_test(void)
     
     while((g_u8Rx0Count < 3) &&(u8_timerOut < 100))
     {
-        Delay_ms(100);
+        Delay_ms(20);
         u8_timerOut++;
     }
     if( (u8_timerOut >= 100) || \

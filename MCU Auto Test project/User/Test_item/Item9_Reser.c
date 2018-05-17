@@ -25,12 +25,12 @@ CHECKRESULT_E Item9_Reset_test(void)
     //Set information block
     
     //reset mcu
-    
+    ChipReset();
     
     //
     while((g_u8Rx0Count < 3) &&(u8_timerOut < 100))
     {
-        Delay_ms(100);
+        Delay_ms(10);
         u8_timerOut++;
     }
     //check reset

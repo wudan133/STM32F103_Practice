@@ -14,4 +14,6 @@ uint8_t WriteSFR(uint8_t u8_addr, uint8_t u8_data);
 uint8_t ReadIdata(uint8_t u8_addr);
 uint8_t WriteIdata(uint8_t u8_addr, uint8_t u8_data);
 
+void ChipReset(void);
+
 #endif

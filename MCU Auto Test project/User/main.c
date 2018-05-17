@@ -54,7 +54,7 @@ int main ( void )
     
     ILI9341_Init ();
 
-    ILI9341_GramScan ( 1 );                 //设定（坐标轴）扫描方向
+    ILI9341_GramScan ( 0 );                 //设定（坐标轴）扫描方向
     ILI9341_Clear ( 0, 0, 240, 320, macBLACK );
     
     
