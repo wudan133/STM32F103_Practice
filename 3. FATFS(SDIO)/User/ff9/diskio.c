@@ -11,8 +11,6 @@
 
 #define BLOCK_SIZE            512 /* Block Size in Bytes */
 
-
-
 /*-----------------------------------------------------------------------*/
 /* Inidialize a Drive                                                    */
 
@@ -50,8 +48,6 @@ DSTATUS disk_status (
 {
 	return RES_OK;
 }
-
-
 
 /*-----------------------------------------------------------------------*/
 /* Read Sector(s)                                                        */
@@ -236,5 +232,4 @@ DWORD get_fattime(void)
 {
 
  	return 0;
-
 } 
