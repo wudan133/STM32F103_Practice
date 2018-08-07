@@ -18,7 +18,6 @@
 #include "stm32f10x.h"
 
 #include "GUI.h"
-#include "..\User\lcd\bsp_ili9341_lcd.h"
 #include "..\User\usart\bsp_usart1.h"
 #include "..\User\SysTick\bsp_SysTick.h"
 #include "..\User\led\bsp_led.h"
@@ -40,7 +39,7 @@ int main(void)
 	SysTick_Init();
 	
 	/*CRC和emWin没有关系，只是他们为了库的保护而做的，这样STemWin的库只能用在ST的芯片上面，别的芯片是无法使用的。 */
-  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE);
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE);
 	
 	/* 初始化GUI */
 	GUI_Init();
@@ -55,7 +54,7 @@ int main(void)
 	/* 显示测试 */
 	GUI_DispStringAt("wildfire ISO board emWin test!",10,10);
 	GUI_Delay(100);
-	LCD_BK_EN;      //点亮LCD背光灯
+	//LCD_BK_EN;      //点亮LCD背光灯
 	
 	/* 方法2，使用固件库控制IO */
 	while (1)

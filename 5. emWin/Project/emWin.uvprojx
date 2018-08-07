@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_XL, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS;..\Libraries\CMSIS\startup;..\Libraries\FWlib\inc;..\User;..\User\usart;..\User\SysTick;..\User\led;..\User\lcd;..\STemWinLibrary522\Config;..\STemWinLibrary522\inc;..\STemWinLibrary522\OS</IncludePath>
+              <IncludePath>..\Libraries\CMSIS;..\Libraries\CMSIS\startup;..\Libraries\FWlib\inc;..\User;..\User\usart;..\User\SysTick;..\User\led;..\User\lcd;..\STemWinLibrary532\Config;..\STemWinLibrary532\inc;..\STemWinLibrary532\OS;..\User\SPI2</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -546,9 +546,14 @@
               <FilePath>..\User\SysTick\bsp_SysTick.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_ili9341_lcd.c</FileName>
+              <FileName>ILI9486_LCD.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\lcd\bsp_ili9341_lcd.c</FilePath>
+              <FilePath>..\User\lcd\ILI9486_LCD.c</FilePath>
+            </File>
+            <File>
+              <FileName>SPI2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\SPI2\SPI2.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -558,22 +563,22 @@
             <File>
               <FileName>GUIConf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\STemWinLibrary522\Config\GUIConf.c</FilePath>
+              <FilePath>..\STemWinLibrary532\Config\GUIConf.c</FilePath>
             </File>
             <File>
               <FileName>LCDConf_FlexColor_Template.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\STemWinLibrary522\Config\LCDConf_FlexColor_Template.c</FilePath>
-            </File>
-            <File>
-              <FileName>STemWin522_CM3_Keil.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>..\STemWinLibrary522\Lib\STemWin522_CM3_Keil.lib</FilePath>
+              <FilePath>..\STemWinLibrary532\Config\LCDConf_FlexColor_Template.c</FilePath>
             </File>
             <File>
               <FileName>GUI_X.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\STemWinLibrary522\OS\GUI_X.c</FilePath>
+              <FilePath>..\STemWinLibrary532\OS\GUI_X.c</FilePath>
+            </File>
+            <File>
+              <FileName>STemWin532_CM3_Keil.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\STemWinLibrary532\Lib\STemWin532_CM3_Keil.lib</FilePath>
             </File>
           </Files>
         </Group>
