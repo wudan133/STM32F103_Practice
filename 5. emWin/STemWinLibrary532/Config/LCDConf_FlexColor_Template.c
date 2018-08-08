@@ -65,8 +65,8 @@ Purpose     : Display controller configuration (single layer)
 //
 // Physical display size
 //
-#define XSIZE_PHYS  128 // To be adapted to x-screen size
-#define YSIZE_PHYS  128 // To be adapted to y-screen size
+#define XSIZE_PHYS  320 // To be adapted to x-screen size
+#define YSIZE_PHYS  480 // To be adapted to y-screen size
 
 /*********************************************************************
 *
@@ -120,7 +120,7 @@ static void LcdWriteReg(U8 Data) {
 */
 static void LcdWriteData(U8 Data) {
   // ... TBD by user
-  LCD_WR_DATA(Data);
+  LCD_WR_DATA8(Data);
 }
 
 /********************************************************************
@@ -133,7 +133,7 @@ static void LcdWriteData(U8 Data) {
 static void LcdWriteDataMultiple(U8 * pData, int NumItems) {
   while (NumItems--) {
     // ... TBD by user
-    LCD_WR_DATA(*pData++);
+    LCD_WR_DATA8(*pData++);
   }
 }
 
@@ -172,7 +172,7 @@ void LCD_X_Config(void) {
   //
   // Set display driver and color conversion
   //
-  pDevice = GUI_DEVICE_CreateAndLink(GUIDRV_FLEXCOLOR, GUICC_565, 0, 0);
+  pDevice = GUI_DEVICE_CreateAndLink(GUIDRV_FLEXCOLOR, GUICC_888, 0, 0);
   //
   // Display driver configuration, required for Lin-driver
   //
@@ -181,9 +181,9 @@ void LCD_X_Config(void) {
   //
   // Orientation
   //
-  Config.FirstCOM = 3;                                          //modify by fire
-  Config.FirstSEG = 2;                                          //modify by fire  
-  Config.Orientation = GUI_MIRROR_Y|GUI_MIRROR_X;								//modify by fire 竖屏
+  Config.FirstCOM = 0;                                          //modify by fire
+  Config.FirstSEG = 0;                                          //modify by fire  
+  Config.Orientation = 0;//GUI_MIRROR_Y|GUI_MIRROR_X;								//modify by fire 竖屏
   Config.NumDummyReads = 2;                                     //modify by fire 读取的第二个数据才是真实数据
   GUIDRV_FlexColor_Config(pDevice, &Config);
   //
@@ -232,7 +232,7 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData) {
     // to be adapted by the customer...
     //
     // ...
-    ILI9486_Init();
+    LCD_Init();
     return 0;
   }
   default:

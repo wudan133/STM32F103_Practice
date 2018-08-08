@@ -90,7 +90,7 @@ void GUI_X_Config(void) {
   //
   // Set default font
   //
-  GUI_SetDefaultFont(GUI_FONT_6X8);
+  GUI_SetDefaultFont(GUI_FONT_8X16);
 }
 
 /*************************** End of file ****************************/

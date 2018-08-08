@@ -26,6 +26,6 @@
 #define LCD_SPI_CS_PIN          GPIO_Pin_11
 
 void SPI2_Init(void);
-u8   SPI2_WriteByte(u8 TxData);
+void SPI2_WriteBytes(u8 *p_TxData, u16 u8_number);
 
 #endif
