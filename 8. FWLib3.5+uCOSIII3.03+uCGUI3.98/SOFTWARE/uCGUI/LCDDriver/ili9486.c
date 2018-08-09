@@ -267,6 +267,11 @@ void ili9486_SetPoint(u16 x,u16 y,u16 point)
 	LCD_WR_DATA(u32point); 
 }
 
+u16 ili9486_GetPoint(u16 x,u16 y)
+{
+    return 0xFFFF;
+}
+
 /* Private typedef -----------------------------------------------------------*/
 typedef struct
 {

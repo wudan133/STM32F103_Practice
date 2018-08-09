@@ -188,6 +188,7 @@
 
 void ili9486_Initializtion(void);
 void ili9486_SetPoint(u16 x,u16 y,u16 point);
+u16 ili9486_GetPoint(u16 x,u16 y);
 
 void ili9320_Initializtion(void);
 //void ili9320_SetCursor(u16 x,u16 y);
@@ -203,7 +204,7 @@ void ili9320_Delay(u32 nCount);
 
 //u16 ili9320_BGR2RGB(u16 c);
 
-u16 ili9320_GetPoint(u16 x,u16 y);;
+u16 ili9320_GetPoint(u16 x,u16 y);
 
 //u16 GUI_Color565(u32 RGB);  // RGB颜色转为16位(565)
 

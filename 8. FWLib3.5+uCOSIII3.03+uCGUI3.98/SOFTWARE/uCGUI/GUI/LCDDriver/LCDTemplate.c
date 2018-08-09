@@ -431,7 +431,7 @@ unsigned int LCD_L0_GetPixelIndex(int x, int y) {
   #endif
   /* Read from hardware ... Adapt to your system */
   {
-    PixelIndex = ili9320_GetPoint(xPhys, yPhys);/* ... */
+    PixelIndex = ili9486_GetPoint(xPhys, yPhys);/* ... */
   }
   return PixelIndex;
 }
