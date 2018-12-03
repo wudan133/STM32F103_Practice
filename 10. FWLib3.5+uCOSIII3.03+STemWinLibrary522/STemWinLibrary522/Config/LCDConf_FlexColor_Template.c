@@ -108,7 +108,7 @@ Purpose     : Display controller configuration (single layer)
 */
 static void LcdWriteReg(U16 Data) {
   // ... TBD by user
-	macFSMC_ILI9341_REG = Data;								//modify by fire
+    macFSMC_ILI9341_REG = Data;         //modify by fire
 }
 
 /********************************************************************
@@ -120,7 +120,7 @@ static void LcdWriteReg(U16 Data) {
 */
 static void LcdWriteData(U16 Data) {
   // ... TBD by user
-	macFSMC_ILI9341_RAM = Data;								//modify by fire
+    macFSMC_ILI9341_RAM = Data;         //modify by fire
 }
 
 /********************************************************************
@@ -133,7 +133,7 @@ static void LcdWriteData(U16 Data) {
 static void LcdWriteDataMultiple(U16 * pData, int NumItems) {
   while (NumItems--) {
     // ... TBD by user
-	macFSMC_ILI9341_RAM = *pData++;						//modify by fire
+    macFSMC_ILI9341_RAM = *pData++;     //modify by fire
   }
 }
 
@@ -146,10 +146,10 @@ static void LcdWriteDataMultiple(U16 * pData, int NumItems) {
 */
 static void LcdReadDataMultiple(U16 * pData, int NumItems) {
   //ili9341读取的第一个数据为无效数据，舍弃(原来没有使用config.numdummyreads参数的时候需要这个语句)
-	//*pData = ILI9341_RAM;					
+    //*pData = ILI9341_RAM;
   while (NumItems--) {
     // ... TBD by user
-		*pData++ = macFSMC_ILI9341_RAM;					//modify by fire
+    *pData++ = macFSMC_ILI9341_RAM;     //modify by fire
   }
 }
 
@@ -168,37 +168,38 @@ static void LcdReadDataMultiple(U16 * pData, int NumItems) {
 *   display driver configuration.
 *
 */
-void LCD_X_Config(void) {
-  GUI_DEVICE * pDevice;
-  CONFIG_FLEXCOLOR Config = {0};
-  GUI_PORT_API PortAPI = {0};
-  //
-  // Set display driver and color conversion
-  //
-  pDevice = GUI_DEVICE_CreateAndLink(GUIDRV_FLEXCOLOR, GUICC_565, 0, 0);
-  //
-  // Display driver configuration, required for Lin-driver
-  //
-  LCD_SetSizeEx (0, XSIZE_PHYS , YSIZE_PHYS);
-  LCD_SetVSizeEx(0, VXSIZE_PHYS, VYSIZE_PHYS);
-  //
-  // Orientation
-  //
-  Config.FirstCOM = 0;                                          //modify by fire
-  Config.FirstSEG = 0;                                          //modify by fire  
-	Config.Orientation = GUI_MIRROR_Y|GUI_MIRROR_X;								//modify by fire 竖屏
-// Config.Orientation = GUI_SWAP_XY | GUI_MIRROR_Y;					    //modify by fire  横屏		
-  Config.NumDummyReads = 2;                                     //modify by fire 读取的第二个数据才是真实数据
+void LCD_X_Config(void)
+{
+    GUI_DEVICE * pDevice;
+    CONFIG_FLEXCOLOR Config = {0};
+    GUI_PORT_API PortAPI = {0};
+    //
+    // Set display driver and color conversion
+    //
+    pDevice = GUI_DEVICE_CreateAndLink(GUIDRV_FLEXCOLOR, GUICC_565, 0, 0);
+    //
+    // Display driver configuration, required for Lin-driver
+    //
+    LCD_SetSizeEx (0, XSIZE_PHYS , YSIZE_PHYS);
+    LCD_SetVSizeEx(0, VXSIZE_PHYS, VYSIZE_PHYS);
+    //
+    // Orientation
+    //
+    Config.FirstCOM = 0;                                          //modify by fire
+    Config.FirstSEG = 0;                                          //modify by fire  
+    //Config.Orientation = GUI_MIRROR_Y|GUI_MIRROR_X;         //modify by fire 竖屏
+    Config.Orientation = GUI_SWAP_XY | GUI_MIRROR_Y;         //modify by fire  横屏
+    Config.NumDummyReads = 2;                                     //modify by fire 读取的第二个数据才是真实数据
 
-  GUIDRV_FlexColor_Config(pDevice, &Config);
-  //
-  // Set controller and operation mode
-  //
-  PortAPI.pfWrite16_A0  = LcdWriteReg;
-  PortAPI.pfWrite16_A1  = LcdWriteData;
-  PortAPI.pfWriteM16_A1 = LcdWriteDataMultiple;
-  PortAPI.pfReadM16_A1  = LcdReadDataMultiple;
-  GUIDRV_FlexColor_SetFunc(pDevice, &PortAPI, GUIDRV_FLEXCOLOR_F66709, GUIDRV_FLEXCOLOR_M16C0B16);		//modify by fire ԭGUIDRV_FLEXCOLOR_F66708
+    GUIDRV_FlexColor_Config(pDevice, &Config);
+    //
+    // Set controller and operation mode
+    //
+    PortAPI.pfWrite16_A0  = LcdWriteReg;
+    PortAPI.pfWrite16_A1  = LcdWriteData;
+    PortAPI.pfWriteM16_A1 = LcdWriteDataMultiple;
+    PortAPI.pfReadM16_A1  = LcdReadDataMultiple;
+    GUIDRV_FlexColor_SetFunc(pDevice, &PortAPI, GUIDRV_FLEXCOLOR_F66709, GUIDRV_FLEXCOLOR_M16C0B16);        //modify by fire ԭGUIDRV_FLEXCOLOR_F66708
 }
 
 /*********************************************************************
@@ -222,28 +223,31 @@ void LCD_X_Config(void) {
 *     -1 - Command not handled
 *      0 - Ok
 */
-int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData) {
-  int r;
-  (void) LayerIndex;
-  (void) pData;
-  
-  switch (Cmd) {
-  case LCD_X_INITCONTROLLER: {
-    //
-    // Called during the initialization process in order to set up the
-    // display controller and put it into operation. If the display
-    // controller is not initialized by any external routine this needs
-    // to be adapted by the customer...
-    //
-    // ...
-		ILI9341_Init();						//modify by fire
-		
-    return 0;
-  }
-  default:
-    r = -1;
-  }
-  return r;
+int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData)
+{
+    int r;
+    (void) LayerIndex;
+    (void) pData;
+
+    switch (Cmd)
+    {
+        case LCD_X_INITCONTROLLER:
+        {
+            //
+            // Called during the initialization process in order to set up the
+            // display controller and put it into operation. If the display
+            // controller is not initialized by any external routine this needs
+            // to be adapted by the customer...
+            //
+            // ...
+            ILI9341_Init();     //modify by fire
+    
+            return 0;
+        }
+        default:
+        r = -1;
+    }
+    return r;
 }
 
 /*************************** End of file ****************************/

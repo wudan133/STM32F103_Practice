@@ -83,7 +83,7 @@ void BSP_Tick_Init(void)
 #endif
     
     OS_CPU_SysTickInit(cnts);                                 /* 这里默认的是最高优先级，根据实际情况修改             */
-//	SysTick_Config(cnts);   //这里默认的是最低优先级
+//  SysTick_Config(cnts);   //这里默认的是最低优先级
 }
 
 /*
@@ -352,8 +352,8 @@ void BSP_Init(void)
 {  
     Bsp_NVIC_Configuration();  /* 中断优先级分组配置 */
     /* LED 端口初始化 */
-    LED_GPIO_Config();  
-    USART1_Config();
+    LED_GPIO_Config();
+    USARTx_Config();
 
     /*CRC和emWin没有关系，只是他们为了库的保护而做的，这样STemWin的库只能用在ST的芯片上面，别的芯片是无法使用的。 */
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE);
