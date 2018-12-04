@@ -18,11 +18,11 @@
           <Vendor>STMicroelectronics</Vendor>
           <PackID>Keil.STM32F1xx_DFP.2.2.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
-          <Cpu>IROM(0x08000000,0x80000) IRAM(0x20000000,0x10000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
+          <Cpu>IRAM(0x20000000,0x10000) IROM(0x08000000,0x80000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
           <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_512 -FS08000000 -FL080000 -FP0($$Device:STM32F103ZE$Flash\STM32F10x_512.FLM))</FlashDriverDll>
-          <DeviceId>4216</DeviceId>
+          <DeviceId>0</DeviceId>
           <RegisterFile>$$Device:STM32F103ZE$Device\Include\stm32f10x.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
@@ -48,14 +48,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>..\..\Output\</OutputDirectory>
-          <OutputName>流水灯</OutputName>
+          <OutputDirectory>.\Output\</OutputDirectory>
+          <OutputName>POR Test Device</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>..\..\Listing\</ListingPath>
+          <ListingPath>.\Listing\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -110,13 +110,13 @@
         </CommonProperty>
         <DllOption>
           <SimDllName>SARMCM3.DLL</SimDllName>
-          <SimDllArguments></SimDllArguments>
-          <SimDlgDll>DARMSTM.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pSTM32F103ZE</SimDlgDllArguments>
+          <SimDllArguments> -REMAP</SimDllArguments>
+          <SimDlgDll>DCM.DLL</SimDlgDll>
+          <SimDlgDllArguments>-pCM3</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
           <TargetDllArguments></TargetDllArguments>
-          <TargetDlgDll>TARMSTM.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pSTM32F103ZE</TargetDlgDllArguments>
+          <TargetDlgDll>TCM.DLL</TargetDlgDll>
+          <TargetDlgDllArguments>-pCM3</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -134,10 +134,10 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4099</DriverSelection>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
-          <Flash2>Segger\JL2CM3.dll</Flash2>
+          <Flash2>BIN\UL2CM3.DLL</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Libraries\CMSIS;.\User;.\Libraries\FWlib\inc;.\uCOS-III\uC-CPU;.\uCOS-III\uC-CPU\ARM-Cortex-M3\RealView;.\uCOS-III\uC-LIB;.\uCOS-III\uC-LIB\Ports\ARM-Cortex-M3\RealView;.\uCOS-III\uCOS-III\Source;.\uCOS-III\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView;.\User\app;.\STemWinLibrary522\Config;.\STemWinLibrary522\inc</IncludePath>
+              <IncludePath>.\..\Libraries\CMSIS;.\..\User;.\..\Libraries\FWlib\inc;.\..\uCOS-III\uC-CPU;.\..\uCOS-III\uC-CPU\ARM-Cortex-M3\RealView;.\..\uCOS-III\uC-LIB;.\..\uCOS-III\uC-LIB\Ports\ARM-Cortex-M3\RealView;.\..\uCOS-III\uCOS-III\Source;.\..\uCOS-III\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView;.\..\User\app;.\..\STemWinLibrary522\Config;.\..\STemWinLibrary522\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -383,22 +383,7 @@
             <File>
               <FileName>app.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\app\app.c</FilePath>
-            </File>
-            <File>
-              <FileName>app.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\app\app.h</FilePath>
-            </File>
-            <File>
-              <FileName>app_cfg.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\app\app_cfg.h</FilePath>
-            </File>
-            <File>
-              <FileName>cpu_cfg.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\app\cpu_cfg.h</FilePath>
+              <FilePath>..\User\app\app.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -408,22 +393,22 @@
             <File>
               <FileName>bsp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\bsp\bsp.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\bsp\led\bsp_led.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_usart1.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\bsp\usart\bsp_usart1.c</FilePath>
+              <FilePath>..\User\bsp\bsp.c</FilePath>
             </File>
             <File>
               <FileName>bsp_ili9341_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\bsp\lcd\bsp_ili9341_lcd.c</FilePath>
+              <FilePath>..\User\bsp\lcd\bsp_ili9341_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usart1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\bsp\usart\bsp_usart1.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\bsp\led\bsp_led.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -433,12 +418,12 @@
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\main.c</FilePath>
+              <FilePath>..\User\main.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_it.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\stm32f10x_it.c</FilePath>
+              <FilePath>..\User\stm32f10x_it.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -448,22 +433,22 @@
             <File>
               <FileName>GUIConf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\STemWinLibrary522\Config\GUIConf.c</FilePath>
+              <FilePath>..\STemWinLibrary522\Config\GUIConf.c</FilePath>
             </File>
             <File>
               <FileName>LCDConf_FlexColor_Template.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\STemWinLibrary522\Config\LCDConf_FlexColor_Template.c</FilePath>
+              <FilePath>..\STemWinLibrary522\Config\LCDConf_FlexColor_Template.c</FilePath>
             </File>
             <File>
               <FileName>STemWin522_CM3_OS_Keil.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>.\STemWinLibrary522\Lib\STemWin522_CM3_OS_Keil.lib</FilePath>
+              <FilePath>..\STemWinLibrary522\Lib\STemWin522_CM3_OS_Keil.lib</FilePath>
             </File>
             <File>
               <FileName>GUI_X_uCOS.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\STemWinLibrary522\OS\GUI_X_uCOS.c</FilePath>
+              <FilePath>..\STemWinLibrary522\OS\GUI_X_uCOS.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -471,29 +456,24 @@
           <GroupName>os_cfg</GroupName>
           <Files>
             <File>
-              <FileName>os_cfg_app.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\app\os_cfg_app.h</FilePath>
-            </File>
-            <File>
-              <FileName>os_cfg.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\app\os_cfg.h</FilePath>
-            </File>
-            <File>
-              <FileName>lib_cfg.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\app\lib_cfg.h</FilePath>
+              <FileName>os_app_hooks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\app\os_app_hooks.c</FilePath>
             </File>
             <File>
               <FileName>os_app_hooks.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\User\app\os_app_hooks.h</FilePath>
+              <FilePath>..\User\app\os_app_hooks.h</FilePath>
             </File>
             <File>
-              <FileName>os_app_hooks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\app\os_app_hooks.c</FilePath>
+              <FileName>os_cfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\app\os_cfg.h</FilePath>
+            </File>
+            <File>
+              <FileName>os_cfg_app.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\app\os_cfg_app.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -503,7 +483,7 @@
             <File>
               <FileName>startup_stm32f10x_hd.s</FileName>
               <FileType>2</FileType>
-              <FilePath>.\Libraries\CMSIS\startup\startup_stm32f10x_hd.s</FilePath>
+              <FilePath>..\Libraries\CMSIS\startup\startup_stm32f10x_hd.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -513,12 +493,12 @@
             <File>
               <FileName>core_cm3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\CMSIS\core_cm3.c</FilePath>
+              <FilePath>..\Libraries\CMSIS\core_cm3.c</FilePath>
             </File>
             <File>
               <FileName>system_stm32f10x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\CMSIS\system_stm32f10x.c</FilePath>
+              <FilePath>..\Libraries\CMSIS\system_stm32f10x.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -528,117 +508,117 @@
             <File>
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\misc.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\misc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_adc.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_adc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_bkp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_bkp.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_bkp.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_can.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_can.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_can.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_cec.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_cec.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_cec.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_crc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_crc.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_crc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_dac.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_dac.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_dac.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_dbgmcu.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_dbgmcu.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_dbgmcu.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_dma.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_dma.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_dma.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_exti.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_exti.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_flash.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_flash.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_fsmc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_fsmc.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_fsmc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_gpio.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_gpio.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_i2c.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_i2c.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_iwdg.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_iwdg.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_iwdg.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_pwr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_pwr.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_pwr.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_rcc.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_rcc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_rtc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_rtc.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_rtc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_sdio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_sdio.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_sdio.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_spi.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_spi.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_tim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_tim.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_tim.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_usart.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_usart.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_wwdg.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\FWlib\src\stm32f10x_wwdg.c</FilePath>
+              <FilePath>..\Libraries\FWlib\src\stm32f10x_wwdg.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -646,34 +626,34 @@
           <GroupName>uC/CPU</GroupName>
           <Files>
             <File>
-              <FileName>cpu.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\uCOS-III\uC-CPU\ARM-Cortex-M3\RealView\cpu.h</FilePath>
-            </File>
-            <File>
-              <FileName>cpu_a.asm</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\uCOS-III\uC-CPU\ARM-Cortex-M3\RealView\cpu_a.asm</FilePath>
+              <FileName>cpu_core.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\uCOS-III\uC-CPU\cpu_core.c</FilePath>
             </File>
             <File>
               <FileName>cpu_c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uC-CPU\ARM-Cortex-M3\RealView\cpu_c.c</FilePath>
+              <FilePath>..\uCOS-III\uC-CPU\ARM-Cortex-M3\RealView\cpu_c.c</FilePath>
             </File>
             <File>
-              <FileName>cpu_core.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uC-CPU\cpu_core.c</FilePath>
+              <FileName>cpu_a.asm</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\uCOS-III\uC-CPU\ARM-Cortex-M3\RealView\cpu_a.asm</FilePath>
+            </File>
+            <File>
+              <FileName>cpu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\uCOS-III\uC-CPU\ARM-Cortex-M3\RealView\cpu.h</FilePath>
             </File>
             <File>
               <FileName>cpu_core.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\uCOS-III\uC-CPU\cpu_core.h</FilePath>
+              <FilePath>..\uCOS-III\uC-CPU\cpu_core.h</FilePath>
             </File>
             <File>
               <FileName>cpu_def.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\uCOS-III\uC-CPU\cpu_def.h</FilePath>
+              <FilePath>..\uCOS-III\uC-CPU\cpu_def.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -681,54 +661,54 @@
           <GroupName>uC/LIB</GroupName>
           <Files>
             <File>
-              <FileName>lib_mem_a.asm</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\uCOS-III\uC-LIB\Ports\ARM-Cortex-M3\RealView\lib_mem_a.asm</FilePath>
-            </File>
-            <File>
               <FileName>lib_ascii.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uC-LIB\lib_ascii.c</FilePath>
+              <FilePath>..\uCOS-III\uC-LIB\lib_ascii.c</FilePath>
             </File>
             <File>
               <FileName>lib_ascii.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\uCOS-III\uC-LIB\lib_ascii.h</FilePath>
+              <FilePath>..\uCOS-III\uC-LIB\lib_ascii.h</FilePath>
             </File>
             <File>
               <FileName>lib_def.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\uCOS-III\uC-LIB\lib_def.h</FilePath>
+              <FilePath>..\uCOS-III\uC-LIB\lib_def.h</FilePath>
             </File>
             <File>
               <FileName>lib_math.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uC-LIB\lib_math.c</FilePath>
+              <FilePath>..\uCOS-III\uC-LIB\lib_math.c</FilePath>
             </File>
             <File>
               <FileName>lib_math.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\uCOS-III\uC-LIB\lib_math.h</FilePath>
+              <FilePath>..\uCOS-III\uC-LIB\lib_math.h</FilePath>
             </File>
             <File>
               <FileName>lib_mem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uC-LIB\lib_mem.c</FilePath>
+              <FilePath>..\uCOS-III\uC-LIB\lib_mem.c</FilePath>
             </File>
             <File>
               <FileName>lib_mem.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\uCOS-III\uC-LIB\lib_mem.h</FilePath>
+              <FilePath>..\uCOS-III\uC-LIB\lib_mem.h</FilePath>
             </File>
             <File>
               <FileName>lib_str.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uC-LIB\lib_str.c</FilePath>
+              <FilePath>..\uCOS-III\uC-LIB\lib_str.c</FilePath>
             </File>
             <File>
               <FileName>lib_str.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\uCOS-III\uC-LIB\lib_str.h</FilePath>
+              <FilePath>..\uCOS-III\uC-LIB\lib_str.h</FilePath>
+            </File>
+            <File>
+              <FileName>lib_mem_a.asm</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\uCOS-III\uC-LIB\Ports\ARM-Cortex-M3\RealView\lib_mem_a.asm</FilePath>
             </File>
           </Files>
         </Group>
@@ -738,92 +718,92 @@
             <File>
               <FileName>os_cfg_app.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_cfg_app.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_cfg_app.c</FilePath>
             </File>
             <File>
               <FileName>os_core.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_core.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_core.c</FilePath>
             </File>
             <File>
               <FileName>os_dbg.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_dbg.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_dbg.c</FilePath>
             </File>
             <File>
               <FileName>os_flag.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_flag.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_flag.c</FilePath>
             </File>
             <File>
               <FileName>os_int.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_int.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_int.c</FilePath>
             </File>
             <File>
               <FileName>os_mem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_mem.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_mem.c</FilePath>
             </File>
             <File>
               <FileName>os_msg.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_msg.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_msg.c</FilePath>
             </File>
             <File>
               <FileName>os_mutex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_mutex.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_mutex.c</FilePath>
             </File>
             <File>
               <FileName>os_pend_multi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_pend_multi.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_pend_multi.c</FilePath>
             </File>
             <File>
               <FileName>os_prio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_prio.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_prio.c</FilePath>
             </File>
             <File>
               <FileName>os_q.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_q.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_q.c</FilePath>
             </File>
             <File>
               <FileName>os_sem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_sem.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_sem.c</FilePath>
             </File>
             <File>
               <FileName>os_stat.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_stat.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_stat.c</FilePath>
             </File>
             <File>
               <FileName>os_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_task.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_task.c</FilePath>
             </File>
             <File>
               <FileName>os_tick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_tick.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_tick.c</FilePath>
             </File>
             <File>
               <FileName>os_time.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_time.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_time.c</FilePath>
             </File>
             <File>
               <FileName>os_tmr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_tmr.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_tmr.c</FilePath>
             </File>
             <File>
               <FileName>os_var.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Source\os_var.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Source\os_var.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -833,17 +813,17 @@
             <File>
               <FileName>os_cpu.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu.h</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu.h</FilePath>
             </File>
             <File>
               <FileName>os_cpu_a.s</FileName>
               <FileType>2</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu_a.s</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu_a.s</FilePath>
             </File>
             <File>
               <FileName>os_cpu_c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uCOS-III\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu_c.c</FilePath>
+              <FilePath>..\uCOS-III\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu_c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -857,8 +837,8 @@
   <RTE>
     <apis/>
     <components>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="4.1.0" condition="CMSIS Core">
-        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.3.0"/>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.1.2" condition="ARMv6_7_8-M Device">
+        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="5.4.0"/>
         <targetInfos>
           <targetInfo name="uCOS_emWin"/>
         </targetInfos>

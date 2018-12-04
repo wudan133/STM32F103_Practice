@@ -102,7 +102,7 @@ static void AppTaskShot(void *p_arg)
     OS_ERR      err;
 
     (void)p_arg;
-    GUI_DispStringHCenterAt("Hellow World",120,120);
+    GUI_DispStringHCenterAt("Hello World!",macILI9341_Default_Max_Heigth/2,macILI9341_Default_Max_Width/2-4);
     GUI_Delay(100);
     LCD_BK_EN;//¿ªÒº¾§ÆÁ±³¹â
     while(1)
