@@ -109,9 +109,7 @@ static void AppTaskShot(void *p_arg)
     {
         LED2_TOGGLE;
         //printf("this is a uasrt task\n");
-        OSTimeDlyHMSM(0, 0, 0, 50,
-                      OS_OPT_TIME_HMSM_STRICT,
-                      &err);
+        OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_HMSM_STRICT, &err);
     }
 }
 
