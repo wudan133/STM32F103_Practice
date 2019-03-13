@@ -17,7 +17,7 @@ static void NVIC_Configuration(void)
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
     
     /* Enable the USARTy Interrupt */
-    NVIC_InitStructure.NVIC_IRQChannel = USART_IRQ;
+    NVIC_InitStructure.NVIC_IRQChannel = USART_IRQ;	 
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
