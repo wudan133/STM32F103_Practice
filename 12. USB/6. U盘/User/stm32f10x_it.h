@@ -29,7 +29,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x.h"
-
+#include "hw_config.h"
+#include "usb_lib.h"
+#include "usb_istr.h"
+#include "usb_pwr.h"
+#include "stm3210e_eval_sdio_sd.h"
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
@@ -44,6 +48,11 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
+void USB_HP_CAN1_TX_IRQHandler(void);
+void USB_LP_CAN1_RX0_IRQHandler(void);
+
+void SDIO_IRQHandler(void);
+void SD_SDIO_DMA_IRQHANDLER(void);
 
 #ifdef __cplusplus
 }
