@@ -597,17 +597,10 @@ void SetEPTxCount(uint8_t bEpNum, uint16_t wCount)
   * Output         : None.
   * Return         : None.
   **/
-#if defined STM32F303xE || defined STM32F302x8 
-void SetEPCountRxReg(uint16_t *pdwReg, uint16_t wCount)
-{
-  _SetEPCountRxReg(pdwReg, wCount);
-}
-#else
 void SetEPCountRxReg(uint32_t *pdwReg, uint16_t wCount)
 {
   _SetEPCountRxReg(dwReg, wCount);
 }
-#endif
 
 /**
   * Function Name  : SetEPRxCount

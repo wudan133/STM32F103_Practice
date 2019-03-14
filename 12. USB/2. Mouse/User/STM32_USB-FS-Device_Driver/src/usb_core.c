@@ -905,14 +905,9 @@ uint8_t Setup0_Process(void)
     uint8_t* b;
     uint16_t* w;
   } pBuf;
-#if defined STM32F303xE || defined STM32F302x8 
-  uint16_t offset = 0;
-  pBuf.b = (uint8_t *)( PMAAddr + _GetEPRxAddr(ENDP0));
-#else  
   uint16_t offset = 1;
   
   pBuf.b = PMAAddr + (uint8_t *)(_GetEPRxAddr(ENDP0) * 2); /* *2 for 32 bits addr */
-#endif
   if (pInformation->ControlState != PAUSE)
   {
     pInformation->USBbmRequestType = *pBuf.b++; /* bmRequestType */

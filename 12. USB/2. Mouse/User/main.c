@@ -27,9 +27,9 @@ int main(void)
     LED_GPIO_Config();
     USARTx_Config();
     
-    printf("Hello World!\r\n");
+    //printf("Hello World!\r\n");
     Set_System();
-  
+    
     USB_Interrupts_Config();
 
     Set_USBClock();
@@ -48,7 +48,6 @@ int main(void)
         #endif
         if (bDeviceState == CONFIGURED)
         {
-            LED1_TOGGLE;
             #if 0
             Joy_Emul();
             #else

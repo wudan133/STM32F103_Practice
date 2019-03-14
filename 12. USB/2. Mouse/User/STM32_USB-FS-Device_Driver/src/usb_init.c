@@ -54,7 +54,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /*  The number of current endpoint, it will be used to specify an endpoint */
- uint8_t	EPindex;
+ uint8_t    EPindex;
 /*  The number of current device, it is an index to the Device_Table */
 /* uint8_t	Device_no; */
 /*  Points to the DEVICE_INFO structure of current device */
@@ -67,9 +67,9 @@ DEVICE_PROP *pProperty;
 /*  Whenever the Rx or Tx state is changed, its value is saved */
 /*  in this variable first and will be set to the EPRB or EPRA */
 /*  at the end of interrupt process */
-uint16_t	SaveState ;
-uint16_t  wInterrupt_Mask;
-DEVICE_INFO	Device_Info;
+uint16_t    SaveState ;
+uint16_t    wInterrupt_Mask;
+DEVICE_INFO Device_Info;
 USER_STANDARD_REQUESTS  *pUser_Standard_Requests;
 
 /* Extern variables ----------------------------------------------------------*/

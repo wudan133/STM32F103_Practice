@@ -182,6 +182,7 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
 void USBWakeUp_IRQHandler(void)
 {
     EXTI_ClearITPendingBit(EXTI_Line18);
+    printf("*");
 }
 
 /**
