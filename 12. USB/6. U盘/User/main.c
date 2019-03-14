@@ -26,10 +26,9 @@ int main(void)
     USB_Interrupts_Config();
     USB_Init();
     while (bDeviceState != CONFIGURED);
-
+    
     USB_Configured_LED();
     
     while(1);
-
 }
 /***********************************END OF FILE********************************/
